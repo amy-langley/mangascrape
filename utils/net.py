@@ -1,10 +1,10 @@
 import requests
 from urlparse import urlparse
 from urlparse import urlunparse
+from os.path import split as pathsplit
 
 def grabfile(url):
-    local_filename = urlparse(url).path.split('/')[-1]
-    # NOTE the stream=True parameter
+    __, local_filename = pathsplit(urlparse(url).path)
     r = requests.get(url, stream=True)
     with open(local_filename, 'wb') as f:
         for chunk in r.iter_content(chunk_size=1024):
