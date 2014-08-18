@@ -5,10 +5,9 @@ import requests
 
 from utils.net import do_unparse
 from utils.file import iterate_filename
-import adapters.adapterbase as adapterbase
+from adapters.adapterbase import AdapterBase
 
-
-class MangaHereAdapter(adapterbase.AdapterBase):
+class MangaHereAdapter(AdapterBase):
 
     SERIES_LIST_URL = r"http://www.mangahere.co/mangalist/"
 

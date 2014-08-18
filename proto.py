@@ -1,14 +1,12 @@
-from lxml import html
-import requests
-from utils.file import mkdtemp, iterate_filename
-from utils.net import grabfile, do_unparse
-from urlparse import urlparse
 import os
-import adapters.mangahere
+
+from utils.file import mkdtemp
+from utils.net import grabfile
+from adapters.mangahere import MangaHereAdapter
 
 SAMPLE_URL = r"http://www.mangahere.co/manga/hourou_musuko/v01/c001/"
 
-adapter = adapters.mangahere.MangaHereAdapter()
+adapter = MangaHereAdapter()
 items = adapter.enumerate_images(
     SAMPLE_URL)
 
