@@ -3,6 +3,7 @@ from urlparse import urlparse
 from urlparse import urlunparse
 from os.path import split as pathsplit
 
+
 def grabfile(url):
     __, local_filename = pathsplit(urlparse(url).path)
     r = requests.get(url, stream=True)

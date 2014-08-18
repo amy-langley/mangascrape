@@ -21,11 +21,15 @@ from utils.net import grabfile
 
 page3 = requests.get('http://www.mangahere.co/manga/hourou_musuko/v01/c001/')
 tree3 = html.fromstring(page3.text)
-items = [i.get('src') for i in tree3.cssselect('section.read_img img')]
+[baseurl] = [i.get('src') for i in tree3.cssselect('section.read_img img')]
+items = [baseurl]
+pagecount = len(
+    tree3.cssselect('section.readpage_top span.right select option'))
+
+print ' '.join([str(pagecount), 'total pages'])
 
 with mkdtemp("foo", chdir=True) as dirname:
     print "I'm in", dirname
     for item in items:
         print item
         grabfile(item)
-
