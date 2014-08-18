@@ -10,7 +10,7 @@ def do_unparse(urlobj, withpath):
 def grabfile(url):
     __, local_filename = pathsplit(urlparse(url).path)
     r = requests.get(url, stream=True)
-    print r.status_code
+    #print r.status_code
     with open(local_filename, 'wb') as f:
         for chunk in r.iter_content(chunk_size=1024):
             if chunk:  # filter out keep-alive new chunks
