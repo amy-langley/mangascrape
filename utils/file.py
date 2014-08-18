@@ -1,7 +1,17 @@
 import os
 import shutil
 import tempfile
+import os.path
+import re
 
+def iterate_filename(sample, min, max):
+    path, sample = os.path.split(sample)
+    sample, ext = os.path.splitext(sample)
+    match = re.match(r"(?P<prefix>.*)\.(?P<varies>\d+)",sample)
+    prefix = match.group('prefix')
+    varylen = len(match.group('varies'))
+    items = [os.path.join(path, prefix + '.' + str(i).zfill(varylen) + ext) for i in range(min,max+1)]
+    return items
 
 class mkdtemp(object):
 
