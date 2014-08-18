@@ -1,3 +1,7 @@
+import os
+import shutil
+import tempfile
+
 class mkdtemp(object):
 
     def __init__(self, *args, **kwargs):
@@ -15,3 +19,6 @@ class mkdtemp(object):
         if self.original_dir:
             os.chdir(self.original_dir)
         shutil.rmtree(self.dirname)
+
+#with mkdtemp("foo", chdir=True) as dirname:
+#    print "I'm in", dirname

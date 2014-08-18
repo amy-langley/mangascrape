@@ -23,7 +23,9 @@ page3 = requests.get('http://www.mangahere.co/manga/hourou_musuko/v01/c001/')
 tree3 = html.fromstring(page3.text)
 items = [i.get('src') for i in tree3.cssselect('section.read_img img')]
 
-for item in items:
-    grabfile(item)
+with mkdtemp("foo", chdir=True) as dirname:
+    print "I'm in", dirname
+    for item in items:
+         grabfile(item)
 
 print items
