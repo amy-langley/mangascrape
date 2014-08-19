@@ -4,16 +4,18 @@ from utils.file import mkdtemp
 from utils.net import grabfile
 from adapters.mangahere import MangaHereAdapter
 
-SAMPLE_URL = r"http://www.mangahere.co/manga/hourou_musuko/v01/c001/"
+# find . -name '*.py' -type f -not -path "*venv*" | xargs wc -l
 
 adapter = MangaHereAdapter()
-items = adapter.enumerate_images(
-    SAMPLE_URL)
+__, series_url = adapter.search_series('Hourou Musuko')[0]
+chapters = [url for index, url in adapter.enumerate_chapters(series_url)][0:1]
+allitems = [(chapter_url, adapter.enumerate_images(chapter_url)) for chapter_url in chapters]
 
-print "From " + SAMPLE_URL
 with mkdtemp("foo", chdir=True) as dirname:
-    for index, item in enumerate(items):
-        print "Fetching page " + str(index+1)
-        grabfile(item)
+    for chapter_url, items in allitems:
+        print "From " + chapter_url
+        for index, item in enumerate(items):
+            print "Fetching page " + str(index+1)
+            grabfile(item)
     for fn in os.listdir(dirname):
         print fn

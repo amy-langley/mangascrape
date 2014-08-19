@@ -25,7 +25,7 @@ class MangaHereAdapter(AdapterBase):
         page = requests.get(self.SERIES_LIST_URL)
         tree = html.fromstring(page.text)
         titlelinks = tree.cssselect('a.manga_info')
-        items = [[i.text_content(), i.get('href')]
+        items = [(i.text_content(), i.get('href'))
                  for i in titlelinks if search_string in i.text_content()]
         return items
 
@@ -34,9 +34,11 @@ class MangaHereAdapter(AdapterBase):
         tree = html.fromstring(page.text)
         chapters = tree.cssselect('div.detail_list ul span.left a')
         items = [(ind, i.get('href')) for ind, i in enumerate(chapters)]
+        items.reverse()
         return items
 
     def enumerate_images(self, chapter_url):
+        print chapter_url
         page = requests.get(chapter_url)
         tree = html.fromstring(page.text)
 

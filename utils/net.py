@@ -7,7 +7,7 @@ def do_unparse(urlobj, withpath):
 	tuple = urlobj[:]
 	return urlunparse(tuple[0:2] + (withpath,) + tuple[3:7])
 
-def grabfile(url):
+def grabfile(url, index = None):
     __, local_filename = pathsplit(urlparse(url).path)
     r = requests.get(url, stream=True)
     #print r.status_code
