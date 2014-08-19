@@ -38,7 +38,6 @@ class MangaHereAdapter(AdapterBase):
         return items
 
     def enumerate_images(self, chapter_url):
-        print chapter_url
         page = requests.get(chapter_url)
         tree = html.fromstring(page.text)
 
