@@ -3,14 +3,19 @@ import os
 from utils.file import mkdtemp
 from utils.net import grabfile
 from adapters.mangahere import MangaHereAdapter
+import processors.nook
 
 # find . -name '*.py' -type f -not -path "*venv*" | xargs wc -l
 
+print 'Fetching metadata'
 adapter = MangaHereAdapter()
 __, series_url = adapter.search_series('Hourou Musuko')[0]
+print 'Located series'
 chapters = [url for index, url in adapter.enumerate_chapters(series_url)][0:2]
-allitems = [(chapter_url, adapter.enumerate_images(chapter_url))
+print 'Loaded chapters'
+allitems = [(chapter_url, adapter.enumerate_images(chapter_url)[0:2])
             for chapter_url in chapters]
+print 'Loaded image list'
 
 # TODO: AR: find a way to solve this problem that doesn't introduce order
 # dependency
