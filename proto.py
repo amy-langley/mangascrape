@@ -4,8 +4,13 @@ from utils.file import mkdtemp
 from utils.net import grabfile
 from adapters.mangahere import MangaHereAdapter
 from processors.grayscale import GrayscaleProcessor
+from processors.color import ColorProcessor
+import targets.nook
 
 # find . -name '*.py' -type f -not -path "*venv*" | xargs wc -l
+
+target = targets.nook.SIMPLE_TOUCH
+print 'Target format', target
 
 print 'Fetching metadata'
 adapter = MangaHereAdapter()
@@ -17,7 +22,12 @@ allitems = [(chapter_url, adapter.enumerate_images(chapter_url)[0:5])
             for chapter_url in chapters]
 print 'Loaded image list'
 
-processor = GrayscaleProcessor()
+processor = None
+
+if target[3]:
+    processor = ColorProcessor()
+else:
+    processor = GrayscaleProcessor()
 
 # TODO: AR: find a way to solve this problem that doesn't introduce order
 # dependency

@@ -5,7 +5,7 @@ import requests
 
 from utils.net import do_unparse
 from utils.file import iterate_filename
-from adapters.adapterbase import AdapterBase
+from adapters.base import AdapterBase
 
 class MangaHereAdapter(AdapterBase):
 
