@@ -1,13 +1,26 @@
+from collections import namedtuple
+
+TargetDescriptor = namedtuple(
+    'TargetDescriptor', ['width', 'height', 'pixel_depth', 'is_color'])
+
 # 70px of vertical space for UI
 
-FIRST_EDITION = (600, 730, 4, False)
-NOOK = (600, 730, 4, False)
-SIMPLE_TOUCH = (600, 730, 4, False)
-GLOW_LIGHT = (758, 954, 4, False)
+FIRST_EDITION = TargetDescriptor(
+    width=600, height=730, pixel_depth=4, is_color=False)
+NOOK = TargetDescriptor(
+    width=600, height=730, pixel_depth=4, is_color=False)
+SIMPLE_TOUCH = TargetDescriptor(
+    width=600, height=730, pixel_depth=4, is_color=False)
+GLOW_LIGHT = TargetDescriptor(
+    width=758, height=954, pixel_depth=4, is_color=False)
 
-COLOR = (600, 954, 24, True)
-TABLET = (600, 954, 24, True)
-HD = (900, 1370, 24, True)
-HD_PLUS = (1280, 1850, 24, True)
+COLOR = TargetDescriptor(
+    width=600, height=954, pixel_depth=24, is_color=True)
+TABLET = TargetDescriptor(
+    width=600, height=954, pixel_depth=24, is_color=True)
+HD = TargetDescriptor(
+    width=900, height=1370, pixel_depth=24, is_color=True)
+HD_PLUS = TargetDescriptor(
+    width=1280, height=1850, pixel_depth=24, is_color=True)
 
-ACCEPTED_FORMATS = ['pdf','epub']
+ACCEPTED_FORMATS = ['pdf', 'epub']
