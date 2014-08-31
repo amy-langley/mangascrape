@@ -1,0 +1,4 @@
+[paths]
+default = git+ssh://git@github.com/amyrebecca/mangascrape.git
+github = git+ssh://git@github.com/amyrebecca/mangascrape.git
+
